@@ -1,34 +1,55 @@
 
 
 body {
-    background-image: url(./assets/img/cartographer.png); 
-    
-    
-    
+    display: flex;
+    background-image: url(./img/cartographer.png);
+    background-size: 50%;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
 }
 
 header {
-    padding: 40px;
+    padding: 15px;
     text-align: center;
     background: #13293d;
-    outline: 14px rgb(39, 41, 39) outset;
+    outline: 5px rgb(39, 41, 39) outset;
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
-    font-size: 40px;
+    font-size: 35px;
     font-family: monospace;
     color: darkorange;
     font-weight: bold;
+    width: 100vw;
   }
 
-.button {
-    border-radius: 10%;
-    margin: 0 auto;
-    display: block;
-    width: 200px;
-    height: 100px;
-    font-size: 30px;
-    background-color: darkred;
+  .start-button {
     display: flex;
-    justify-content: right;
+    width: 20vh;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+    font-variant: all-petite-caps;
+  }
+
+  .questionContainer {
+    flex: 0 auto;
+    padding: 100px;
+    font-size: 20px;
+    text-align: center;
+    background-color: darkgray;
+    margin-top: 100px;
+    width: 50vw;
+    font-size: 22px;
+}
+
+.timer {
+    display: flex;
+    font-size: 40px;
+    font-weight: bold;
+    border-block: 5px black outset;
+    border-radius: 19%;
+    color: brown;
+    font-family: monospace;
 }
