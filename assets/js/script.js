@@ -4,7 +4,7 @@ var startButton = document.querySelector(".start-button")
 var answersDiv = document.querySelector("#answers")
 var scoreCard = document.querySelector("#scoreCard")
 
-var score;
+var score = []
 var isWin = false;
 var timer;
 var timerCount;
@@ -31,46 +31,33 @@ function startGame () {
   renderQuestions()
 }
 
-function scoreCard() {
-   // Create a form dynamically
-   var form = document.createElement("form");
-   form.setAttribute("method", "post");
-   form.setAttribute("action", "submit.php");
+
+var scoreCard = function() {
+   console.log("scoreCard");
+   <meta http-equiv="refresh" content="1; url='https://www.w3docs.com'" />
 
 }
 
-// function isWin() {
-//   clearInterval(timer)
-
-// }
-
-function loseGame() {
-  wordBlank.textContent = "GAME OVER";
-  loseCounter++
-  startButton.disabled = false;
-  setLosses()
-  }
-  
-  function startTimer () {
-    // console.log("Made it to Timer")
-    timer = setInterval(function() {
-      timerCount--;
-      timerElement.textContent = timerCount;
-      if (timerCount >= 0) {
-        if (isWin && timerCount > 0) {
-          clearInterval(timer);
+function startTimer () {
+  // console.log("Made it to Timer")
+  timer = setInterval(function() {
+    timerCount--;
+    timerElement.textContent = timerCount;
+    if (timerCount >= 0) {
+      if (isWin && timerCount > 0) {
+        clearInterval(timer);
         }
       }
       if (timerCount === 0) {
         clearInterval(timer)
-        scoreCard()
         ;
       }
     }, 1000);
   }
-  var index = 0
-  function renderQuestions() {
-    // console.log("Questions started")
+
+var index = 0
+function renderQuestions() {
+  // console.log("Questions started")
     document.getElementById("questions").innerHTML = questions[index].text;
     // resets the answer buttons
     answersDiv.innerHTML = '';
@@ -97,23 +84,27 @@ function loseGame() {
         console.log(index)
         if (index === questions.length) {
           console.log("made it")
-          return;
+          scoreCard();
+          
         }
         renderQuestions()
+        
         
       }
     });
   }
-   
-
-    startButton.addEventListener("click", startGame);
-    
-    
-    // for (var i = 0; i < questions.length; i++)
-    // if else to continue questions or stop ater .length
-    
-    
-    
+  
+  startButton.addEventListener("click", startGame);
+  scoreButton.addEventListener("click", scoreCard);
+  
+  
+  
+  
+  // for (var i = 0; i < questions.length; i++)
+  // if else to continue questions or stop ater .length
+  
+  
+  
   
   
   
