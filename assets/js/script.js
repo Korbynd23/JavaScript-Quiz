@@ -1,6 +1,8 @@
 var questions = document.querySelector("#questions")
 var timerElement = document.querySelector(".timer")
 var startButton = document.querySelector(".start-button")
+var answersDiv = document.querySelector("#answers")
+var scoreCard = document.querySelector("#scoreCard")
 
 var score;
 var isWin = false;
@@ -11,30 +13,42 @@ var chosenQuestion = [];
 
 var questions = [
   {text:"How many active Volcanos are in the United States of America?", answers:[{name:78, value: false}, {name:110, value: false}, {name:161, value: true}, {name: 202, value: false}]},
-
+  
   {text:"Which state has the most National Parks?", answers: [{name:"Alaska", value: false}, {name:"California", value: true}, {name:"Colorado", value: false}, {name:"Utah", value: false}]},
-
+  
   {text:"Which of the following is NOT a National Park?", answers: [{name:"Yosemite", value: false}, {name:"Yellowstone", value: false}, {name:"Disneyland", value: true}, {name:"Grand Canyon", value: false}]},
-
-  {text:"Which of the following cities has the highest population", answers: [{name:"Philadelphia", value: false}, {name:"San Antonio", value: true}, {name:"San Diego", value: false}, {name:"Phoenix", value: true}]}
+  
+  {text:"Which of the following cities has the highest population", answers: [{name:"Philadelphia", value: false}, {name:"San Antonio", value: false}, {name:"San Diego", value: false}, {name:"Phoenix", value: true}]}
 ];
 
 
 function startGame () {
   // console.log("Game Started")
   isWin = false;
-    timerCount = 40;
-    startButton.disabled = true;
-    startTimer()
-    renderQuestions()
-  }
-  
-  
-  function loseGame() {
-    wordBlank.textContent = "GAME OVER";
-    loseCounter++
-    startButton.disabled = false;
-    setLosses()
+  timerCount = 40;
+  startButton.disabled = true;
+  startTimer()
+  renderQuestions()
+}
+
+function scoreCard() {
+   // Create a form dynamically
+   var form = document.createElement("form");
+   form.setAttribute("method", "post");
+   form.setAttribute("action", "submit.php");
+
+}
+
+// function isWin() {
+//   clearInterval(timer)
+
+// }
+
+function loseGame() {
+  wordBlank.textContent = "GAME OVER";
+  loseCounter++
+  startButton.disabled = false;
+  setLosses()
   }
   
   function startTimer () {
@@ -48,7 +62,9 @@ function startGame () {
         }
       }
       if (timerCount === 0) {
-        clearInterval(timer);
+        clearInterval(timer)
+        scoreCard()
+        ;
       }
     }, 1000);
   }
@@ -56,8 +72,8 @@ function startGame () {
   function renderQuestions() {
     // console.log("Questions started")
     document.getElementById("questions").innerHTML = questions[index].text;
-    // document.getElementById("#answers").innerHTML = answer[index].name
-    var answersDiv = document.querySelector("#answers")
+    // resets the answer buttons
+    answersDiv.innerHTML = '';
     questions[index].answers.forEach(answer => {
       var button = document.createElement("button")
       button.setAttribute("value", answer.value)
@@ -66,47 +82,41 @@ function startGame () {
       button.onclick = function() {
         var guess = answer.value
         answer[index]
+        
         if (guess === true) {
           console.log("Yes")
           score += 1
-        }
-        else {
+          alert("Correct!")
+          
+        } else {
           console.log("No")
+          alert("Wrong. -8 seconds")
           timerCount -= 8
         }
-        index++
-        // for (var i = 0; i < questions.length; i++)
-        // if else to continue questions or stop ater .length
+        index++ 
+        console.log(index)
+        if (index === questions.length) {
+          console.log("made it")
+          return;
+        }
         renderQuestions()
-      
+        
       }
-      if (timerCount === 0) {
-        endGame()
-      }
-      // answersDiv.appendChild(button)
     });
   }
-  
-  //End quiz funtion
-  // function endGame(){
-  //   document.getElementById("questions").innerHTML = score;
-  //   scoreText.innerHTML = scoreTag; }
-  
-  startButton.addEventListener("click", startGame);
-  
-  
-  
-  
-  
+   
+
+    startButton.addEventListener("click", startGame);
+    
+    
+    // for (var i = 0; i < questions.length; i++)
+    // if else to continue questions or stop ater .length
+    
+    
+    
   
   
-  // GIVEN I am taking a code quiz
-  // WHEN I click the start button
-  // THEN a timer starts and I am presented with a question
-  // WHEN I answer a question
-  // THEN I am presented with another question
-  // WHEN I answer a question incorrectly
-  // THEN time is subtracted from the clock
+  
   // WHEN all questions are answered or the timer reaches 0
   // THEN the game is over
   // WHEN the game is over
