@@ -3,12 +3,17 @@ var timerElement = document.querySelector(".timer")
 var startButton = document.querySelector(".start-button")
 var answersDiv = document.querySelector("#answers")
 var scoreCard = document.querySelector("#scoreCard")
+var setPoints = document.querySelector(".setPoints")
+var submit = document.querySelector(".submit")
+var playerInput = document.querySelector("#player")
+var userPlayerSpan = document.querySelector("#prevPlayer");
+var userScoreSpan = document.querySelector("#prevScore");
 
-var score = []
+var score = 0
 var isWin = false;
-var timer;
+var timer = 40
 var timerCount;
-
+var playerText = "";
 var chosenQuestion = [];
 
 var questions = [
@@ -21,9 +26,23 @@ var questions = [
   {text:"Which of the following cities has the highest population", answers: [{name:"Philadelphia", value: false}, {name:"San Antonio", value: false}, {name:"San Diego", value: false}, {name:"Phoenix", value: true}]}
 ];
 
+renderLastRegistered();
 
+//renders the previous intials 
+function renderLastRegistered() {
+  var highP = localStorage.getItem("savedPlayer");
+  var highS = localStorage.getItem("savedScore");
+
+  if (!highP || !highS) {
+    return;
+  }
+
+  userPlayerSpan.textContent = highP;
+  userScoreSpan.textContent = highS;
+}
+
+//start game function ran when Start button clicked
 function startGame () {
-  // console.log("Game Started")
   isWin = false;
   timerCount = 40;
   startButton.disabled = true;
@@ -31,33 +50,36 @@ function startGame () {
   renderQuestions()
 }
 
-
+//present user with final score
 var scoreCard = function() {
-   console.log("scoreCard");
-   <meta http-equiv="refresh" content="1; url='https://www.w3docs.com'" />
-
+  setPoints.textContent = score;  
+  alert("You've Finished! Enter your intials and save you score")
+  // console.log("got to scoreCard");
+  
 }
-
+//timer setup
 function startTimer () {
-  // console.log("Made it to Timer")
   timer = setInterval(function() {
     timerCount--;
     timerElement.textContent = timerCount;
-    if (timerCount >= 0) {
+    if (timerCount > 0) {
       if (isWin && timerCount > 0) {
         clearInterval(timer);
         }
       }
       if (timerCount === 0) {
         clearInterval(timer)
+        endGame()
+        scoreCard()
         ;
       }
     }, 1000);
   }
 
-var index = 0
+
+  var index = 0
+  //renders set of questions from question array
 function renderQuestions() {
-  // console.log("Questions started")
     document.getElementById("questions").innerHTML = questions[index].text;
     // resets the answer buttons
     answersDiv.innerHTML = '';
@@ -81,38 +103,41 @@ function renderQuestions() {
           timerCount -= 8
         }
         index++ 
-        console.log(index)
-        if (index === questions.length) {
-          console.log("made it")
+        if (questions.length > index) {
+          renderQuestions()
+        } else {
+          endGame()
           scoreCard();
-          
-        }
-        renderQuestions()
-        
+          }
+      
+   
         
       }
     });
   }
+
+  //stored last score
+  submit.addEventListener("click", function(event) {
+  event.preventDefault();
+
+  var userInfo = document.querySelector("#player").value;
+
+  console.log("stored score")
+  score.textContent = score;
+  localStorage.setItem("savedScore", score)
+  localStorage.setItem("savedPlayer", userInfo);
+  renderLastRegistered()
+  })
+
+  function endGame() {
+    clearInterval(timer)
+  }
+
   
+  // submit.addEventListener("click", saveScore);
   startButton.addEventListener("click", startGame);
-  scoreButton.addEventListener("click", scoreCard);
   
-  
-  
-  
-  // for (var i = 0; i < questions.length; i++)
-  // if else to continue questions or stop ater .length
-  
-  
-  
-  
-  
-  
-  // WHEN all questions are answered or the timer reaches 0
-  // THEN the game is over
-  // WHEN the game is over
-  // THEN I can save my initials and my score
-  
+  // Psuedo
   // Landing page
   // I need a start button
   // Description of app: welcome to my quiz, this is how it works sort of thing
@@ -134,5 +159,4 @@ function renderQuestions() {
   // If the user is on the last question, once they select an answer, they're presented with a form to enter their initials
   // Initials and remaining time is saved to local storage as the score
   
-  // Game ends when all questions are answered OR the timer reaches 0 -- is there a case where the timer might go lower than 0 that needs to be accounted for?
   

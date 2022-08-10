@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Time!!</title>
+    <title>Geography Quiz Time!!</title>
     <link rel="stylesheet" href="./assets/css/style.css"></link>
 </head>
 
 <body>
     <header>
-        <div class= "large-font">Time for a Quiz!</div>
+        <div class= "large-font">Geography Time for a Quiz!</div>
         <button class="start-button">START!</button>
-        <button class="scoreButton">HighScores</button>
     </header>
     <br>
     <br>
@@ -23,11 +22,24 @@
     <main>
         <section>
              <article class="questionContainer">
-                <article id="questions">This quiz is going to involve mulitple questions that vary in difficulty, answer to your fullest. If the question is answered incorrectly time will be immediately subtracted from the clock. Click  "START"  to begin the quiz</article>
+                <article id="questions">This quiz is going to involve mulitple questions that vary in difficulty, answer to your fullest. If the question is answered incorrectly time will be immediately subtracted from the clock. Click  "START"  to begin the quiz.</article>
                 <article id="answers"></article>
-                <article id="scoreCard"></article> 
+                <article id="scoreCard"></article>
+
              </article>          
         </section>
+        <br>
+        <section id ="endText" class="scoreCard">
+            <h1 id="scoreText">Scores</h1>
+            <form>
+                <label for="playerText">Player Intials:</label><br>
+                <input type="text" id="player" name="fname"><br>
+            </form>
+            <h2> SCORE: <span class="setPoints"> 0 </span></h2>
+            <p>Previous Player: <span id="prevPlayer"></span></p>
+            <p>Previous Score: <span id="prevScore"></span></p>
+            <button class="submit"> -SAVE SCORE- </button>
+    </section>
     </main>
     <script src="./assets/js/script.js"></script>
 </body>
