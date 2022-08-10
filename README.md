@@ -2,7 +2,6 @@
 
 ## Description
 
-Link to deploy application: https://korbynd23.github.io/KorbynDPortfolio/
 
 GIVEN I am taking a code quiz
 WHEN I click the start button
@@ -20,9 +19,12 @@ THEN the game is over
 WHEN the game is over
 THEN I can save my initials and score
 
+Link to deploy application: https://korbynd23.github.io/JavaScript-Quiz/
+
+
 ---
 
-![Screenshot](/assets/css/img/quizShot.png)
+![Screenshot](/JavaScript-Quiz\assets\css\img\quizShot.png)
 
 ## Table of Contents
 
