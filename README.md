@@ -39,6 +39,7 @@ Link to deploy application: https://korbynd23.github.io/JavaScript-Quiz/
 
 - HTML
 - CSS
+- JavaScript
 
 ## How To Use
 
