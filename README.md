@@ -24,7 +24,7 @@ Link to deploy application: https://korbynd23.github.io/JavaScript-Quiz/
 
 ---
 
-![Screenshot](/JavaScript-Quiz\assets\css\img\quizShot.png)
+https://github.com/Korbynd23/JavaScript-Quiz/blob/main/assets/css/img/quizShot.png?raw=true
 
 ## Table of Contents
 
